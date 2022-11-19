@@ -1,0 +1,8 @@
+.headerOptions {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  color: gray;
+  justify-items: center;
+  align-items: center;
+}
+
