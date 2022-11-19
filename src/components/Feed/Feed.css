@@ -6,7 +6,6 @@
 .feed__inputContainer {
   background-color: white;
   padding: 10px;
-  padding-bottom: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
 }
@@ -20,9 +19,23 @@
   border: 1px solid rgba(221, 221, 221, 0.856);
 }
 .feed__editIcon {
-  width: 40px;
+  width: 30px;
   height: auto;
 }
 .feed__input > form {
   display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 0px 5px;
+}
+
+.feed__inputField {
+  border: none !important;
+  flex: 1;
+  margin: 0 10px;
+}
+
+.feed__inputOptions {
+  display: flex;
+  justify-content: space-evenly;
 }

@@ -94,8 +94,12 @@
 .sidebar__tags:hover {
   background-color: rgb(241, 241, 241);
   border-radius: 10px;
-  color: black;
   cursor: pointer;
+}
+
+.sidebar__tags:hover .sidebar__recentItem {
+
+  color: black;
 } 
 
 .sidebar__recentItem {
