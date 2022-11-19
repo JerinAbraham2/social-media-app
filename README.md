@@ -21,3 +21,5 @@ A learning project but also customized for my preferences.
 <!--
 ##### Commercial free use (but going to attribute anyway)
 - Tailwind Components -->
+### Other
+Image by Dani Géza from Pixabay

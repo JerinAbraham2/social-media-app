@@ -2,28 +2,20 @@ import "./App.css";
 import { useState } from "react";
 import Header from "./components/Header/Header";
 import { MantineProvider } from "@mantine/core";
+import Sidebar from "./components/sidebar/Sidebar";
+import Feed from "./components/Feed/Feed";
 
 function App() {
   return (
-    <MantineProvider
-      theme={{
-        colors: {
-          // Add your color
-          deepBlue: ["#E9EDFC", "#C1CCF6", "#99ABF0" /* ... */],
-          // or replace default theme color
-          blue: ["#E9EDFC", "#C1CCF6", "#99ABF0" /* ... */],
-        },
-      }}
-      withGlobalStyles
-      withNormalizeCSS
-    >
+    <MantineProvider withGlobalStyles withNormalizeCSS>
       <div className="app">
-        {/* Header */}
         <Header />
         {/* App Body */}
-        {/* Side bar */}
-        {/* Feed */}
-        {/* Widgets */}
+        <div className="app__body">
+          <Sidebar />
+          <Feed />
+          {/* Widgets */}
+        </div>
       </div>
     </MantineProvider>
   );
