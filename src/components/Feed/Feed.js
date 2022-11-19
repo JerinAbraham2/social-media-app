@@ -1,16 +1,24 @@
 import { Button, Input } from "@mantine/core";
-import React from "react";
+import React, { useState } from "react";
 import { AlignJustify, Calendar, Edit, Image, Video } from "react-feather";
 import "./Feed.css";
 import InputOption from "./InputOption/InputOption";
+import Post from "./Post/Post";
 
 const Feed = () => {
+  const [posts, setPosts] = useState([]);
+
+  const handleSendPost = (e) => {
+    e.preventDefault();
+    setPosts(...posts)
+  };
+
   return (
     <div className="feed">
       <div className="feed__inputContainer">
         <div className="feed__input">
           <Edit className="feed__editIcon" />
-          <form>
+          <form onSubmit={handleSendPost}>
             <Input variant="unstyled" size="md" className="feed__inputField" placeholder="what are you thinking?" />
             <Button type="submit" size="sm" color="gray">
               Send
@@ -25,6 +33,10 @@ const Feed = () => {
         </div>
       </div>
       {/* posts */}
+      {posts.map((post) => (
+        <Post />
+      ))}
+      <Post name="Tobi Turner" description="this is a test" message="wow this works" />
     </div>
   );
 };
