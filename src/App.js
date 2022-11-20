@@ -1,5 +1,4 @@
 import "./App.css";
-import { useState } from "react";
 import Header from "./components/Header/Header";
 import { MantineProvider } from "@mantine/core";
 import Sidebar from "./components/sidebar/Sidebar";

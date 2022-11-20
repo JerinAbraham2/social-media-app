@@ -1,16 +1,37 @@
 import { Button, Input } from "@mantine/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AlignJustify, Calendar, Edit, Image, Video } from "react-feather";
+import { db } from "../firebase";
 import "./Feed.css";
 import InputOption from "./InputOption/InputOption";
 import Post from "./Post/Post";
+import firebase from "firebase/compat/app";
 
 const Feed = () => {
+  const [input, setInput] = useState("");
   const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    db.collection("posts").orderBy("timestamp", "desc").onSnapshot((snapshot) =>
+      setPosts(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      )
+    );
+  }, []);
 
   const handleSendPost = (e) => {
     e.preventDefault();
-    setPosts(...posts)
+
+    db.collection("posts").add({
+      name: "Tobi Turner",
+      description: "this is a test",
+      message: input,
+      photoUrl: "",
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+    setInput("");
   };
 
   return (
@@ -19,8 +40,15 @@ const Feed = () => {
         <div className="feed__input">
           <Edit className="feed__editIcon" />
           <form onSubmit={handleSendPost}>
-            <Input variant="unstyled" size="md" className="feed__inputField" placeholder="what are you thinking?" />
-            <Button type="submit" size="sm" color="gray">
+            <Input
+              variant="unstyled"
+              size="md"
+              className="feed__inputField"
+              placeholder="what are you thinking?"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
+            <Button type="submit" size="sm" color="gray" className="feed__button">
               Send
             </Button>
           </form>
@@ -33,10 +61,10 @@ const Feed = () => {
         </div>
       </div>
       {/* posts */}
-      {posts.map((post) => (
-        <Post />
+      {posts.map(({ id, data: { name, description, message, photoUrl } }) => (
+        <Post key={id} name={name} description={description} message={message} photoUrl={photoUrl} />
       ))}
-      <Post name="Tobi Turner" description="this is a test" message="wow this works" />
+      {/* <Post name="Tobi Turner" description="this is a test" message="wow this works" /> */}
     </div>
   );
 };

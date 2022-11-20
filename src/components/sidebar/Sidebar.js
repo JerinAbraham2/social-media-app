@@ -12,7 +12,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar__top">
-        <img src={profileBackground} alt="profile background picture" />
+        <img src={profileBackground} alt="profile background" />
         <Avatar className="sidebar__avatar" />
         <h2>Tobi Turner</h2>
         <h4>tobiturner@gmail.com</h4>
