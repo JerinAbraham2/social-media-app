@@ -1,7 +1,7 @@
 import React from "react";
 import { Bell, Book, Home, MessageSquare, Search, Users } from "react-feather";
 import "./Header.css";
-import logo from "../../resources/imgs/organized-cropped.png";
+import logo from "../../resources/imgs/OC-Logo-V2.png";
 import avatar from "../../resources/imgs/tobi_avatar_xs.png";
 import { Input } from "@mantine/core";
 import HeaderOptions from "./HeaderOptions/HeaderOptions";
