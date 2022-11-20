@@ -9,6 +9,7 @@ import Login from "./components/Login/Login";
 import { NotificationsProvider } from '@mantine/notifications';
 import { useEffect } from "react";
 import { auth } from "./components/firebase";
+import Widgets from "./components/Widgets/Widgets";
 
 function App() {
   const user = useSelector(selectUser);
@@ -42,7 +43,7 @@ function App() {
           <div className="app__body">
             <Sidebar />
             <Feed />
-            
+            <Widgets />
           </div>
         )}
       </div>
