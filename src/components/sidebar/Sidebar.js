@@ -3,8 +3,12 @@ import "./Sidebar.css";
 import profileBackground from "../../resources/imgs/poppies-174276_640.jpg";
 import { Hash } from "react-feather";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../features/counter/userSlice";
 
 const Sidebar = () => {
+  const user = useSelector(selectUser);
+
   const [tags, setTags] = useState([]);
   useEffect(() => {
     setTags(["netlify", "reactjs", "ui", "developer", "front-end", "vercel"])
@@ -13,9 +17,9 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="sidebar__top">
         <img src={profileBackground} alt="profile background" />
-        <Avatar className="sidebar__avatar" />
-        <h2>Tobi Turner</h2>
-        <h4>tobiturner@gmail.com</h4>
+        <Avatar src={user.photoUrl} className="sidebar__avatar" >{user.displayName[0]}</Avatar>
+        <h2>{user.displayName}</h2>
+        <h4>{user.email}</h4>
       </div>
       <div className="sidebar__stats">
         <div className="sidebar__stat">

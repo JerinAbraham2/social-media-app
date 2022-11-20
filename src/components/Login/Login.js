@@ -26,7 +26,7 @@ const Login = () => {
             email: userAuth.user.email,
             uid: userAuth.user.uid,
             displayName: userAuth.user.displayName,
-            profileUrl: userAuth.user.photoURL,
+            photoUrl: userAuth.user.photoURL,
           })
         );
       })
@@ -42,7 +42,7 @@ const Login = () => {
       .createUserWithEmailAndPassword(email, password)
       .then((userAuth) => {
         userAuth.user
-          .updateProfile({
+          .updateProfile({ // This i think is for firebase
             displayName: name,
             photoURL: profilePic,
           })
@@ -52,7 +52,7 @@ const Login = () => {
                 email: userAuth.user.email,
                 uid: userAuth.user.uid,
                 displayName: name,
-                photoURL: profilePic,
+                photoUrl: profilePic,
               })
             );
           });

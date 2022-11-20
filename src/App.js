@@ -22,7 +22,7 @@ function App() {
           email: userAuth.email,
           uid: userAuth.uid,
           displayName: userAuth.displayName,
-          photoUrl: userAuth.photoUrl,
+          photoUrl: userAuth.photoURL,
         }))
       } else {
         // user is logged out
@@ -42,6 +42,7 @@ function App() {
           <div className="app__body">
             <Sidebar />
             <Feed />
+            
           </div>
         )}
       </div>

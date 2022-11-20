@@ -13,8 +13,8 @@ const Header = () => {
   const dispatch = useDispatch();
   
   const logoutOfApp = () => {
-    dispatch(logout());
-    auth.signOut();
+    dispatch(logout()); // sign out from redux
+    auth.signOut();  // sign out from firebase
   }
   return (
     <div className="header">
@@ -28,7 +28,7 @@ const Header = () => {
         <HeaderOptions Icon={MessageSquare} title="Messages" />
         <HeaderOptions Icon={Bell} title="Notifications" />
         <HeaderOptions Icon={Book} title="Document" />
-        <HeaderOptions avatar={avatar} title="Profile" onClick={logoutOfApp} />
+        <HeaderOptions title="Profile" avatar={true} onClick={logoutOfApp} />
       </div>
     </div>
   );
