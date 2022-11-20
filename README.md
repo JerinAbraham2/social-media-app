@@ -21,5 +21,6 @@ A learning project but also customized for my preferences.
 <!--
 ##### Commercial free use (but going to attribute anyway)
 - Tailwind Components -->
-### Other
+### Other (Credits)
 Image by Dani Géza from Pixabay
+Used this website https://www.remove.bg/upload to make banner background transparent

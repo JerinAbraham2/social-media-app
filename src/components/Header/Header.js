@@ -11,7 +11,7 @@ const Header = () => {
     <div className="header">
       <div className="header__left">
         <img src={logo} alt="logo" />
-        <Input icon={<Search />} placeholder="" className="left__input" variant="unstyled" size="lg"/>
+        <Input icon={<Search />} placeholder="Search" className="left__input" variant="unstyled" size="lg"/>
       </div>
       <div className="header__right">
         <HeaderOptions Icon={Home} title="Home" />
