@@ -3,17 +3,39 @@ import Header from "./components/Header/Header";
 import { MantineProvider } from "@mantine/core";
 import Sidebar from "./components/sidebar/Sidebar";
 import Feed from "./components/Feed/Feed";
-import { useSelector } from "react-redux";
-import { selectUser } from "./features/counter/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout, selectUser } from "./features/counter/userSlice";
 import Login from "./components/Login/Login";
+import { NotificationsProvider } from '@mantine/notifications';
+import { useEffect } from "react";
+import { auth } from "./components/firebase";
 
 function App() {
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    auth.onAuthStateChanged(userAuth => {
+      if (userAuth) {
+        // user is logged in
+        dispatch(login({
+          email: userAuth.email,
+          uid: userAuth.uid,
+          displayName: userAuth.displayName,
+          photoUrl: userAuth.photoUrl,
+        }))
+      } else {
+        // user is logged out
+        dispatch(logout());
+      }
+    })
+  }, [])
+
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
+      <NotificationsProvider>
       <div className="app">
         <Header />
-
         {!user ? (
           <Login />
         ) : (
@@ -23,6 +45,7 @@ function App() {
           </div>
         )}
       </div>
+      </NotificationsProvider>
     </MantineProvider>
   );
 }

@@ -5,8 +5,17 @@ import logo from "../../resources/imgs/OC-Logo-V2.png";
 import avatar from "../../resources/imgs/tobi_avatar_xs.png";
 import { Input } from "@mantine/core";
 import HeaderOptions from "./HeaderOptions/HeaderOptions";
+import { useDispatch } from "react-redux";
+import { logout } from "../../features/counter/userSlice";
+import { auth } from "../firebase";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  
+  const logoutOfApp = () => {
+    dispatch(logout());
+    auth.signOut();
+  }
   return (
     <div className="header">
       <div className="header__left">
@@ -19,7 +28,7 @@ const Header = () => {
         <HeaderOptions Icon={MessageSquare} title="Messages" />
         <HeaderOptions Icon={Bell} title="Notifications" />
         <HeaderOptions Icon={Book} title="Document" />
-        <HeaderOptions avatar={avatar} title="Profile" />
+        <HeaderOptions avatar={avatar} title="Profile" onClick={logoutOfApp} />
       </div>
     </div>
   );
