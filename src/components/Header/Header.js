@@ -3,13 +3,14 @@ import { Bell, Book, Home, MessageSquare, Search, Users } from "react-feather";
 import "./Header.css";
 import logo from "../../resources/imgs/OC-Logo-V2.png";
 import avatar from "../../resources/imgs/tobi_avatar_xs.png";
-import { Input } from "@mantine/core";
+import { Button, Input } from "@mantine/core";
 import HeaderOptions from "./HeaderOptions/HeaderOptions";
-import { useDispatch } from "react-redux";
-import { logout } from "../../features/counter/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, selectUser } from "../../features/counter/userSlice";
 import { auth } from "../firebase";
 
 const Header = () => {
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
   
   const logoutOfApp = () => {
@@ -28,7 +29,8 @@ const Header = () => {
         <HeaderOptions Icon={MessageSquare} title="Messages" />
         <HeaderOptions Icon={Bell} title="Notifications" />
         <HeaderOptions Icon={Book} title="Document" />
-        <HeaderOptions title="Profile" avatar={true} onClick={logoutOfApp} />
+        <HeaderOptions title="Profile" avatar={true} />
+        {user && <Button variant="outline" size="sm" onClick={logoutOfApp} >Log out</Button>}
       </div>
     </div>
   );

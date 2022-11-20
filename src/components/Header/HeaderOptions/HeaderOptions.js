@@ -13,7 +13,7 @@ const HeaderOptions = ({ Icon, title, avatar, onClick }) => {
     setTags(["netlify", "reactjs", "ui", "developer", "front-end", "vercel"])
   }, [])
   return (
-    <div onClick={onClick} className="headerOptions">
+    <div className="headerOptions">
       {Icon && <Icon className="headerOptions__icon" size={30} />}
       {avatar && (
         <Avatar src={user?.photoUrl} alt="profile icon" radius={20} size={30}>{user?.displayName[0]}
