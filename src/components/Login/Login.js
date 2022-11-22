@@ -17,47 +17,55 @@ const Login = () => {
 
   const loginToApp = (e) => {
     e.preventDefault();
+    if (!email || !password) {
+      showNotification({
+        title: "Sign in: Fill your email and password",
+        message: "If you are signing in, please fill out your email and password",
+      });
+    } else {
+      auth
+        .signInWithEmailAndPassword(email, password)
+        .then((userAuth) => {
+          dispatch(
+            login({
+              email: userAuth.user.email,
+              uid: userAuth.user.uid,
+              displayName: userAuth.user.displayName,
+              photoUrl: userAuth.user.photoURL,
+            })
+          );
+        })
+        .catch((error) => alert(error));
+    }
+  };
 
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((userAuth) => {
+  const handleRegisterSubmit = async (e) => {
+    if (!name || !email || !password) {
+      e.preventDefault();
+      showNotification({
+        title: "Registering: Fill out form",
+        message: "If you are registering, please fill out the full form (profile picture is optional)",
+      });
+    } else {
+      try {
+        const userAuth = await auth.createUserWithEmailAndPassword(email, password);
+        await userAuth.user.updateProfile({
+          displayName: name,
+          photoURL: profilePic,
+        });
         dispatch(
           login({
             email: userAuth.user.email,
             uid: userAuth.user.uid,
-            displayName: userAuth.user.displayName,
-            photoUrl: userAuth.user.photoURL,
+            displayName: name,
+            photoUrl: profilePic,
           })
         );
-      })
-      .catch((error) => alert(error));
-  };
-
-  const handleRegisterSubmit = (e) => {
-    if (!name) {
-      e.preventDefault();
-      alert("please enter full name");
+      } catch (message) {
+        alert(message);
+      }
+      window.location.reload(true);
     }
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((userAuth) => {
-        userAuth.user
-          .updateProfile({ // This i think is for firebase
-            displayName: name,
-            photoURL: profilePic,
-          })
-          .then(() => {
-            dispatch(
-              login({
-                email: userAuth.user.email,
-                uid: userAuth.user.uid,
-                displayName: name,
-                photoUrl: profilePic,
-              })
-            );
-          });
-      })
-      .catch((error) => alert(error));
   };
 
   return (
